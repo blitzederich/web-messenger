@@ -1,0 +1,17 @@
+{
+  "name": "web-messenger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cache-rt": "git+https://github.com/blitzederich/cache-rt.git",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  }
+}
