@@ -1,4 +1,4 @@
-const Warnings = require('./warnings.json');
+const Warnings = require('./Warnings.json');
 
 /**
  * Prepares a response object.

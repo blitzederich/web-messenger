@@ -3,10 +3,10 @@ const mysql = require('mysql');
 const pool = mysql.createPool({
     connectionLimit: 10,
     charset: 'utf8mb4',
-    host: '167.172.38.12',
+    host: 'localhost',
     user: 'root',
     password: '',
-    database: 'web-messenger'
+    database: 'web-messenger-1'
 });
 
 const DataBase = {};

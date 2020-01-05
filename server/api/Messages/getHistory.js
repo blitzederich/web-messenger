@@ -7,8 +7,8 @@ const Messages = require('../../core/Messages/index');
 router.post('/getHistory', async (req, res) => {
     
     let peerId = req.body.peerId,
-        limit  = req.body.limit,
-        offset = req.body.offset;
+        offset = req.body.offset,
+        limit  = req.body.limit;
     
     let cookieValue = req.cookies.authId,
         cr_isLogin  = await Auth.isLogin(cookieValue);

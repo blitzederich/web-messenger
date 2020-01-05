@@ -1,7 +1,10 @@
 const DataBase = require('../DataBase/index');
 const Answer   = require('../Answer/index');
 
-const getActivity = async (usersId/*array*/) => {
+/**
+ * @param {Array<number>} usersId 
+ */
+const getActivity = async (usersId) => {
     try {
 
         if (!Array.isArray(usersId)) return Promise.resolve(

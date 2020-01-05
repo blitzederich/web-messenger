@@ -4,7 +4,7 @@ const router  = express.Router();
 const Auth     = require('../../core/Auth/index');
 const Messages = require('../../core/Messages/index');
 
-router.post('/getDialogs', async (req, res) => {
+router.get('/getDialogs', async (req, res) => {
     
     let cookieValue = req.cookies.authId,
         cr_isLogin  = await Auth.isLogin(cookieValue);

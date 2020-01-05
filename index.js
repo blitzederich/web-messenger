@@ -15,4 +15,4 @@ app.use('/', LONG_POLL);
 app.use('/api', API);
 
 
-app.listen(3000);
+app.listen(3000, () => console.log('Сервер запущен...'));

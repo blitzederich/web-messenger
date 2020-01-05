@@ -47,7 +47,7 @@ const getDialogs = async (userId) => {
 
         let db_getDialogs = await DataBase.query(
             `
-                SELECT messages.id, messages.peerId, messages.senderId, messages.recipientId, messages.date, messages.text, messages.unread, users.fullName AS peerFullName
+                SELECT messages.id, messages.peerId, messages.senderId, messages.recipientId, messages.date, messages.text, messages.unread, users.fullName AS peerFullName, users.login as peerLogin
                 FROM (
                     SELECT id, senderId, recipientId, date, text, unread,
                     CASE
@@ -90,3 +90,21 @@ const getDialogs = async (userId) => {
 }
 
 module.exports = getDialogs;
+
+/*
+
+SELECT id, login, 
+(
+    SELECT date
+    FROM (
+    	SELECT userId, date
+        FROM activity
+        WHERE userId=1
+        ORDER BY id DESC 
+     	LIMIT 1
+    ) _activity
+) AS lastActivity
+FROM users
+WHERE id=1
+
+*/

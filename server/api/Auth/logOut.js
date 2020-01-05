@@ -3,7 +3,7 @@ const router  = express.Router();
 
 const Auth = require('../../core/Auth/index');
 
-router.post('/logOut', async (req, res) => {
+router.get('/logOut', async (req, res) => {
     
     let cookieValue = req.cookies.authId;
 

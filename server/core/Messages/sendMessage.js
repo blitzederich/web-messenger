@@ -44,6 +44,10 @@ const sendMessage = async (senderId, recipientId, text) => {
 
         /// check senderId: number ///
 
+        // if(!/[0-9]{1,11}/.test( senderId )) return Promise.resolve(
+        //     Answer(false, 'SYSTEM_ERROR')
+        // );
+
         if (senderId === '') return Promise.resolve(
             Answer(false, 'SYSTEM_ERROR')
         );
@@ -57,6 +61,10 @@ const sendMessage = async (senderId, recipientId, text) => {
         );
 
         /// check recipientId: number ///
+
+        // if(!/[0-9]{1,11}/.test( recipientId )) return Promise.resolve(
+        //     Answer(false, 'SYSTEM_ERROR')
+        // );
 
         if (recipientId === '') return Promise.resolve(
             Answer(false, 'RECIPIENT_NULL')

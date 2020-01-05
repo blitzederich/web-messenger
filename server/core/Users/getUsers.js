@@ -1,6 +1,9 @@
 const DataBase = require('../DataBase/index');
 const Answer   = require('../Answer/index');
 
+/**
+ * @param {Array<number>} usersId 
+ */
 const getUsers = async (usersId/*array*/) => {
     try {
 
@@ -10,8 +13,15 @@ const getUsers = async (usersId/*array*/) => {
 
         let db_getUsers = await DataBase.query(
             `
-                SELECT id, login, fullName
+                SELECT id, login, fullName, lastActivity
                 FROM users
+                LEFT JOIN 
+                (
+                    SELECT userId, MAX(date) AS lastActivity
+                    FROM activity
+                    GROUP BY userId
+                ) _activity 
+                ON users.id = _activity.userId
                 WHERE id IN (?)
             `,
             [usersId]
@@ -19,9 +29,24 @@ const getUsers = async (usersId/*array*/) => {
 
         let users = db_getUsers.results;
 
+        let usersObj = {};
+        users.map(user => {
+            usersObj[ user.id ] = user
+        });
+
         return Promise.resolve(
-            Answer(true, { users })
-        )
+            Answer(true, { users: usersObj })
+        );
+
+        // let usersObj = {};
+
+        // users.map(user => {
+        //     usersObj[ user.id ] = user
+        // });
+
+        // return Promise.resolve(
+        //     Answer(true, { users: usersObj })
+        // );
 
 
     } catch (error) {

@@ -3,7 +3,7 @@ const router  = express.Router();
 
 const Auth  = require('../../core/Auth/index');
 
-router.post('/isLogin', async (req, res) => {
+router.get('/isLogin', async (req, res) => {
 
     let cookieValue = req.cookies.authId;
     let cr_isLogin = await Auth.isLogin(cookieValue);

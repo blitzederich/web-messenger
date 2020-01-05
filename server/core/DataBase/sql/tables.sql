@@ -3,8 +3,7 @@ CREATE TABLE `users` (
   `login`        char(32)   NOT NULL UNIQUE,
   `password`     char(32)   NOT NULL,
   `date`         bigint(14) NOT NULL,
-  `fullName`     char(32)   NOT NULL,
-  `lastActivity` bigint(14) NOT NULL
+  `fullName`     char(32)   NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `messages` (

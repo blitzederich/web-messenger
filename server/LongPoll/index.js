@@ -20,8 +20,9 @@ router.get('/LongPoll', async (req, res) => {
         CacheRT.removeEventListener(userId, listenerId);
     });
 
-    req.on('close', () => CacheRT.removeEventListener(userId, listenerId));
-
+    req.on('close', () => {
+        CacheRT.removeEventListener(userId, listenerId);
+    })
     req.setTimeout(10*60*1000, () => console.log('timeout'));
 
 });
