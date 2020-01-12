@@ -1,6 +1,10 @@
 const DataBase = require('../DataBase/index');
 const Answer   = require('../Answer/index');
 
+/**
+ * @param {string} text 
+ */
+
 const search = async (text/*string*/) => {
     try {
 

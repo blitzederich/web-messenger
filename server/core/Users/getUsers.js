@@ -4,7 +4,7 @@ const Answer   = require('../Answer/index');
 /**
  * @param {Array<number>} usersId 
  */
-const getUsers = async (usersId/*array*/) => {
+const getUsers = async (usersId) => {
     try {
 
         if (!Array.isArray(usersId)) return Promise.resolve(
@@ -37,17 +37,6 @@ const getUsers = async (usersId/*array*/) => {
         return Promise.resolve(
             Answer(true, { users: usersObj })
         );
-
-        // let usersObj = {};
-
-        // users.map(user => {
-        //     usersObj[ user.id ] = user
-        // });
-
-        // return Promise.resolve(
-        //     Answer(true, { users: usersObj })
-        // );
-
 
     } catch (error) {
         return Promise.resolve(

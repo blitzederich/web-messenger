@@ -101,27 +101,25 @@ const sendMessage = async (senderId, recipientId, text) => {
             recipientFullName = '';
 
         if (senderId === recipientId) {
+
             cr_getUsers = await Users.getUsers([ senderId ]);
 
-            if (cr_getUsers.data.users.length !== 1) return Promise.resolve(
+            if (Object.keys(cr_getUsers.data.users).length !== 1) return Promise.resolve(
                 Answer(false, 'USER_NOT_FOUND')
             );
 
-            senderFullName = recipientFullName = cr_getUsers.data.users[ 0 ].fullName;
+            senderFullName = recipientFullName = cr_getUsers.data.users[ senderId ].fullName;
+
         } else {
             cr_getUsers = await Users.getUsers([ senderId, recipientId ]);
 
-            if (cr_getUsers.data.users.length !== 2) return Promise.resolve(
+            if (Object.keys(cr_getUsers.data.users).length !== 2) return Promise.resolve(
                 Answer(false, 'USER_NOT_FOUND')
             );
 
-            if (cr_getUsers.data.users[ 0 ].id === senderId) {
-                senderFullName = cr_getUsers.data.users[ 0 ].fullName;
-                recipientFullName = cr_getUsers.data.users[ 1 ].fullName;
-            } else {
-                senderFullName = cr_getUsers.data.users[ 1 ].fullName;
-                recipientFullName = cr_getUsers.data.users[ 0 ].fullName;
-            }
+            senderFullName = cr_getUsers.data.users[ senderId ].fullName;
+            recipientFullName = cr_getUsers.data.users[ recipientId ].fullName;
+            
         }
 
 

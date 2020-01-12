@@ -3,7 +3,12 @@ const Answer   = require('../Answer/index');
 
 const checkLogin = require('./checkLogin');
 
-const changeLogin = async (userId/*number*/, login/*string*/) => {
+/**
+ * 
+ * @param {number} userId 
+ * @param {string} login 
+ */
+const changeLogin = async (userId, login) => {
     try {
 
         userId = userId || '';

@@ -1,7 +1,12 @@
 const DataBase = require('../DataBase/index');
 const Answer   = require('../Answer/index');
 
-const checkLogin = async (login/*string*/, inspected=false) => {
+/**
+ * 
+ * @param {string} login 
+ * @param {boolean} inspected 
+ */
+const checkLogin = async (login, inspected=false) => {
     try {
 
         if (!inspected) {

@@ -1,10 +1,12 @@
 const DataBase = require('../DataBase/index');
 const Answer   = require('../Answer/index');
 
-const setActivity = async (userId/*number*/) => {
+/**
+ * @param {number} userId 
+ * @param {date} date
+ */
+const setActivity = async (userId) => {
     try {
-
-        /// check userId: number ///
 
         userId = userId || '';
         userId = String(userId).trim();
@@ -25,7 +27,7 @@ const setActivity = async (userId/*number*/) => {
 
         
 
-        let date = +new Date();
+        let date = Date.now();
 
         let db_setActivity = await DataBase.query(
             `
