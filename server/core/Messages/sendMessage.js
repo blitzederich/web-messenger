@@ -3,6 +3,7 @@ const Answer   = require('../Answer/index');
 const Users    = require('../Users/index');
 
 const CacheRT  = require('cache-rt');
+const EventCache = require('../../EventCache/index');
 
 /**
  * Send message from `sender` to `recipient` user.
@@ -117,7 +118,7 @@ const sendMessage = async (senderId, recipientId, text) => {
                 Answer(false, 'USER_NOT_FOUND')
             );
 
-            senderFullName = cr_getUsers.data.users[ senderId ].fullName;
+            senderFullName    = cr_getUsers.data.users[ senderId ].fullName;
             recipientFullName = cr_getUsers.data.users[ recipientId ].fullName;
             
         }
@@ -144,7 +145,9 @@ const sendMessage = async (senderId, recipientId, text) => {
         //if (senderId !== recipientId)
         //    CacheRT.push(senderId, 'message', {id: messageId, senderId, recipientId, peerId: recipientId, peerFullName: recipientFullName, date, text, unread: 1});
 
-        CacheRT.push(recipientId, 'message', { id: messageId, senderId, recipientId, peerId: senderId, peerFullName: senderFullName, date, text, unread: 1 });
+        // CacheRT.push(recipientId, 'message', { id: messageId, senderId, recipientId, peerId: senderId, peerFullName: senderFullName, date, text, unread: 1 });
+
+        EventCache.push(recipientId, 'message', { id: messageId, senderId, recipientId, peerId: senderId, peerFullName: senderFullName, date, text, unread: 1 });
 
         return Promise.resolve(
             Answer(true, {id: messageId, senderId, recipientId, peerId: recipientId, peerFullName: recipientFullName, date, text, unread: 1})

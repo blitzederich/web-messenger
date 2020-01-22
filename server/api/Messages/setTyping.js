@@ -1,8 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 
-const Auth     = require('../../core/Auth/index');
-const CacheRT  = require('cache-rt');
+const Auth        = require('../../core/Auth/index');
+const EventCache  = require('../../EventCache/index');
 
 router.post('/setTyping', async (req, res) => {
     
@@ -15,7 +15,7 @@ router.post('/setTyping', async (req, res) => {
 
     let userId = cr_isLogin.data.userId;
 
-    CacheRT.push(peerId, 'message:typing', {peerId: userId});
+    EventCache.push(peerId, 'message:typing', {peerId: userId});
 
     res.json({});
 

@@ -1,7 +1,8 @@
 const DataBase = require('../DataBase/index');
 const Answer = require('../Answer/index');
 
-const CacheRT = require('cache-rt');
+// const CacheRT = require('cache-rt');
+const EventCache = require('../../EventCache/index');
 
 /**
  * Mark history as read for peers users.
@@ -52,7 +53,7 @@ const readHistory = async (userId, peerId) => {
             Answer(false, 'SYSTEM_ERROR')
         );
         
-        CacheRT.push(peerId, 'message:read', { peerId: userId });
+        EventCache.push(peerId, 'message:read', { peerId: userId });
 
         return Promise.resolve(
             Answer(true, { readCount })
