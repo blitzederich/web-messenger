@@ -43,11 +43,6 @@ const sendMessage = async (senderId, recipientId, text) => {
         text = text || '';
         text = String(text).trim();
 
-        /// check senderId: number ///
-
-        // if(!/[0-9]{1,11}/.test( senderId )) return Promise.resolve(
-        //     Answer(false, 'SYSTEM_ERROR')
-        // );
 
         if (senderId === '') return Promise.resolve(
             Answer(false, 'SYSTEM_ERROR')
@@ -61,11 +56,6 @@ const sendMessage = async (senderId, recipientId, text) => {
             Answer(false, 'SYSTEM_ERROR')
         );
 
-        /// check recipientId: number ///
-
-        // if(!/[0-9]{1,11}/.test( recipientId )) return Promise.resolve(
-        //     Answer(false, 'SYSTEM_ERROR')
-        // );
 
         if (recipientId === '') return Promise.resolve(
             Answer(false, 'RECIPIENT_NULL')
@@ -80,8 +70,6 @@ const sendMessage = async (senderId, recipientId, text) => {
         ); 
         
 
-        /// check text: string ///
-
         if (text === '') return Promise.resolve(
             Answer(false, 'MESSAGE_TEXT_NULL')
         );
@@ -90,12 +78,10 @@ const sendMessage = async (senderId, recipientId, text) => {
             Answer(false, 'MESSAGE_TEXT_LONG')
         );
 
-        /* required type */
 
         senderId = Number(senderId);
         recipientId = Number(recipientId);
 
-        /* detect and sort full name */
 
         let cr_getUsers,
             senderFullName = '',
@@ -141,12 +127,7 @@ const sendMessage = async (senderId, recipientId, text) => {
         );
 
         let messageId = db_sendMessage.results.insertId;
-
-        //if (senderId !== recipientId)
-        //    CacheRT.push(senderId, 'message', {id: messageId, senderId, recipientId, peerId: recipientId, peerFullName: recipientFullName, date, text, unread: 1});
-
-        // CacheRT.push(recipientId, 'message', { id: messageId, senderId, recipientId, peerId: senderId, peerFullName: senderFullName, date, text, unread: 1 });
-
+        
         EventCache.push(recipientId, 'message', { id: messageId, senderId, recipientId, peerId: senderId, peerFullName: senderFullName, date, text, unread: 1 });
 
         return Promise.resolve(

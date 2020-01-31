@@ -5,7 +5,7 @@ const Answer   = require('../Answer/index');
  * @param {string} text 
  */
 
-const search = async (text/*string*/) => {
+const search = async (text) => {
     try {
 
         text = text || '';

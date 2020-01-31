@@ -25,7 +25,6 @@ const signIn = async (login, password) => {
         password = password || '';
         password = String(password);
 
-        /// check login: string ///
 
         if (login === '') return Promise.resolve(
             Answer(false, 'LOGIN_NULL')
@@ -39,7 +38,6 @@ const signIn = async (login, password) => {
             Answer(false, 'LOGIN_INVALID')
         );
 
-        /// check password: string ///
 
         if (password === '') return Promise.resolve(
             Answer(false, 'PASSWORD_NULL')
@@ -72,7 +70,6 @@ const signIn = async (login, password) => {
         let date = +new Date();
         let userId = db_signIn.results[ 0 ].id;
 
-        /// auth ///
 
         let cookieValue = login + '_' + date;
         let db_auth = await DataBase.query(
@@ -88,8 +85,7 @@ const signIn = async (login, password) => {
             true
         );
 
-        // result
-
+        
         return Promise.resolve(
             Answer(true, {userId, date, cookieValue})
         );

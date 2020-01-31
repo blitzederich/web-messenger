@@ -32,7 +32,6 @@ const signUp = async (fullName, login, password) => {
         password = password || '';
         password = String(password);
 
-        /// check fullName: string ///
 
         if (fullName === '') return Promise.resolve(
             Answer(false, 'FULLNAME_NULL')
@@ -46,7 +45,6 @@ const signUp = async (fullName, login, password) => {
             Answer(false, 'FULLNAME_INVALID')
         );
 
-        /// check login: string ///
 
         if (login === '') return Promise.resolve(
             Answer(false, 'LOGIN_NULL')
@@ -60,7 +58,6 @@ const signUp = async (fullName, login, password) => {
             Answer(false, 'LOGIN_INVALID')
         );
 
-        /// check password: string ///
 
         if (password === '') return Promise.resolve(
             Answer(false, 'PASSWORD_NULL')
@@ -70,14 +67,12 @@ const signUp = async (fullName, login, password) => {
             Answer(false, 'PASSWORD_LONG')
         );
 
-        /// checkLogin
 
         let cr_checkLogin = await checkLogin(login, true);
 
         if (!cr_checkLogin.status)
             return Promise.resolve(cr_checkLogin);
 
-        /// insert in DB
 
         let date = +new Date();
         let db_signUp = await DataBase.query(
@@ -95,7 +90,6 @@ const signUp = async (fullName, login, password) => {
 
         let userId = db_signUp.results.insertId;
 
-        /// auth
 
         let cookieValue = login + '_' + date;
         let db_auth = await DataBase.query(

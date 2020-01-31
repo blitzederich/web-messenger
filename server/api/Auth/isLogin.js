@@ -11,7 +11,6 @@ router.get('/isLogin', async (req, res) => {
     if (cr_isLogin.status !== true)
         res.clearCookie('authId');
 
-    //setTimeout(() => {res.json(cr_isLogin)}, 5000);
     res.json(cr_isLogin)
 });
 

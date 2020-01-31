@@ -14,7 +14,6 @@ const changeLogin = async (userId, login) => {
         userId = userId || '';
         userId = String(userId);
 
-        /// check userId: number ///
 
         if (userId === '') return Promise.resolve(
             Answer(false, 'SYSTEM_ERROR')
@@ -30,7 +29,6 @@ const changeLogin = async (userId, login) => {
 
         userId = Number(userId);
 
-        /// check login: string ///
 
         let cr_checkLogin = await checkLogin(login);
 
@@ -39,7 +37,6 @@ const changeLogin = async (userId, login) => {
 
         login = cr_checkLogin.data.login;
 
-        /// change login ///
 
         let db_changeLogin = await DataBase.query(
             `

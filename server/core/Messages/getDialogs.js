@@ -90,21 +90,3 @@ const getDialogs = async (userId) => {
 }
 
 module.exports = getDialogs;
-
-/*
-
-SELECT id, login, 
-(
-    SELECT date
-    FROM (
-    	SELECT userId, date
-        FROM activity
-        WHERE userId=1
-        ORDER BY id DESC 
-     	LIMIT 1
-    ) _activity
-) AS lastActivity
-FROM users
-WHERE id=1
-
-*/

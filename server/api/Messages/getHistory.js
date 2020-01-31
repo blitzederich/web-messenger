@@ -21,7 +21,6 @@ router.post('/getHistory', async (req, res) => {
     let cr_getHistory = await Messages.getHistory(userId, peerId, offset, limit);
 
     res.json(cr_getHistory);
-    //setTimeout(() => {res.json(cr_getHistory);}, 3000);
 
 });
 

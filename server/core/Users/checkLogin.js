@@ -14,7 +14,6 @@ const checkLogin = async (login, inspected=false) => {
             login = login || '';
             login = String(login).trim();
 
-            /// check login: string ///
 
             if (login === '') return Promise.resolve(
                 Answer(false, 'LOGIN_NULL')
@@ -30,7 +29,6 @@ const checkLogin = async (login, inspected=false) => {
 
         }
 
-        /// check login ///
 
         let db_checkLogin = await DataBase.query(
             `

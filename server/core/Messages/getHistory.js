@@ -37,7 +37,6 @@ const getHistory = async (userId, peerId, offset=0, limit=50) => {
         peerId = peerId || '';
         peerId = String(peerId).trim();
 
-        /// check userId: number ///
 
         if (userId === '') return Promise.resolve(
             Answer(false, 'SYSTEM_ERROR')
@@ -53,7 +52,6 @@ const getHistory = async (userId, peerId, offset=0, limit=50) => {
 
         userId = Number(userId);
 
-        /// check peerId: number ///
 
         if (peerId === '') return Promise.resolve(
             Answer(false, 'PEER_ID_NULL')
@@ -69,11 +67,9 @@ const getHistory = async (userId, peerId, offset=0, limit=50) => {
 
         peerId = Number(peerId);
 
-        /// read history ///
 
         let cr_readHistory = await readHistory(userId, peerId);
 
-        /// get history ///
 
         let db_getHistory = await DataBase.query(
             `
